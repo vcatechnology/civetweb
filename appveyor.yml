@@ -48,6 +48,8 @@ install:
     )
   - if "%compiler_name%"=="gcc" (@set "mingw_log_folder=%mingw_output_folder%\logs")
   - if exist "%mingw_log_folder%" @for /f %%f in ('dir /b /oD /tc "%mingw_log_folder%"') do @set "mingw_log_file=%mingw_log_folder%\%%f"
+  - echo "%mingw_log_file%"
+  - dir "%mingw_log_folder%"
   - if exist "%mingw_log_file%" appveyor PushArtifact "%mingw_log_file%" -FileName mingw-download.log
 
 before_build:
@@ -120,5 +122,5 @@ after_test:
 matrix:
   fast_finish: true
 
-cache:
-  - C:\mingw-builds -> mingw.cmd
+#cache:
+#  - C:\mingw-builds -> mingw.cmd
